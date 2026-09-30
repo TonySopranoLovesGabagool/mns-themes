@@ -1,6 +1,6 @@
 /* ==========================================================
    MidnightScene — OLED / Gold  (working title)
-   Version 0.7 — new logo
+   Version 0.8 — lightweight WebP assets
 
    Base     Requires the site's "MidnightScene" style. Built against
             _midnightscene-*.css variables, not stock Galactic.
@@ -54,12 +54,12 @@ html:root {
   --mns-header-edge:  rgba(255, 255, 255, .06);
 
   /* Assets (hosted on img.midnightscene.cc) */
-  --mns-wall-desktop: url("https://img.midnightscene.cc/u/QpY7lD.png"); /* 1672x941 */
-  --mns-wall-mobile:  url("https://img.midnightscene.cc/u/blkGNi.png"); /* 940x1672 */
-  --mns-logo:         url("https://img.midnightscene.cc/u/xoEOH2.png"); /* 2172x724, art is the middle ~54% */
-  --mns-logo-w:       306px;
-  --mns-logo-scale:   186%;   /* crops the empty transparent edges */
-  --mns-logo-pos:     -13px calc(50% - 2px);
+  --mns-wall-desktop: url("https://img.midnightscene.cc/u/ewVGMl.webp");
+  --mns-wall-mobile:  url("https://img.midnightscene.cc/u/eUI1TB.webp");
+  --mns-logo:         url("https://img.midnightscene.cc/u/LSMwZx.webp"); /* pre-trimmed, ~4.9:1 */
+  --mns-logo-w:       297px;
+  --mns-logo-scale:   100%;
+  --mns-logo-pos:     left center;
 }
 
 
@@ -302,10 +302,7 @@ html .top-nav__left {
 
 html .top-nav__branding {
   width: var(--mns-logo-w);
-  /* "contain" fits the whole image in the 60px-tall slot without
-     cropping. If the logo has empty transparent space around it and
-     looks small, raise --mns-logo-scale (e.g. 115%, 128%) to crop the
-     empty space off. */
+  /* Logo file is pre-trimmed, so it just fits the 60px slot. */
   background: var(--mns-logo) var(--mns-logo-pos) / auto var(--mns-logo-scale) no-repeat;
 }
 html .top-nav__branding > * {
