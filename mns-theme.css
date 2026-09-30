@@ -1,6 +1,6 @@
 /* ==========================================================
    MidnightScene — OLED / Gold  (working title)
-   Version 0.6 — pagination scrollbar fix, glass header
+   Version 0.7 — new logo
 
    Base     Requires the site's "MidnightScene" style. Built against
             _midnightscene-*.css variables, not stock Galactic.
@@ -56,8 +56,10 @@ html:root {
   /* Assets (hosted on img.midnightscene.cc) */
   --mns-wall-desktop: url("https://img.midnightscene.cc/u/QpY7lD.png"); /* 1672x941 */
   --mns-wall-mobile:  url("https://img.midnightscene.cc/u/blkGNi.png"); /* 940x1672 */
-  --mns-logo:         url("https://img.midnightscene.cc/u/bJT6C8.png"); /* 2172x724, has transparent margins */
-  --mns-logo-w:       232px;
+  --mns-logo:         url("https://img.midnightscene.cc/u/xoEOH2.png"); /* 2172x724, art is the middle ~54% */
+  --mns-logo-w:       306px;
+  --mns-logo-scale:   186%;   /* crops the empty transparent edges */
+  --mns-logo-pos:     -13px calc(50% - 2px);
 }
 
 
@@ -300,10 +302,11 @@ html .top-nav__left {
 
 html .top-nav__branding {
   width: var(--mns-logo-w);
-  /* The PNG has ~22% empty transparent space top and bottom. Scaling
-     it to 128% of the 60px slot crops that space off, so the visible
-     artwork fills the slot. */
-  background: var(--mns-logo) left center / auto 128% no-repeat;
+  /* "contain" fits the whole image in the 60px-tall slot without
+     cropping. If the logo has empty transparent space around it and
+     looks small, raise --mns-logo-scale (e.g. 115%, 128%) to crop the
+     empty space off. */
+  background: var(--mns-logo) var(--mns-logo-pos) / auto var(--mns-logo-scale) no-repeat;
 }
 html .top-nav__branding > * {
   opacity: 0;
