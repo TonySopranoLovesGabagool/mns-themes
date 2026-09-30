@@ -1,6 +1,6 @@
 # MNS Themes
 
-Custom themes for [MidnightScene](https://midnightscene.cc). Each theme is a single CSS file you load from your MNS settings. No extensions or installs needed.
+Custom themes for MidnightScene. Each theme is a single CSS file you load from your MNS settings. No extensions or installs needed.
 
 More themes are on the way. This repo will keep growing as new ones are added, and existing links won't change when that happens.
 
