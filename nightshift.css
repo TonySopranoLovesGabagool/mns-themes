@@ -1,402 +1,300 @@
-/* ==========================================================
-   MidnightScene — OLED / Gold  (working title)
-   Version 0.8 — lightweight WebP assets
+/* mns gold */
 
-   Base     Requires the site's "MidnightScene" style. Built against
-            _midnightscene-*.css variables, not stock Galactic.
-   Install  Settings -> External/Custom CSS URL -> this file's URL
-
-   Contrast (WCAG), flat color pairs
-   ----------------------------------------------------------
-   text   #F3F5F7 on panel #030507   ~18.7:1
-   muted  #A9B4C2 on panel           ~8.1:1
-   gold   #EBC66F on panel           ~12.5:1
-   input border #5A6573 on panel     ~3.5:1  (controls need 3:1)
-   panel border #29313A on panel     ~1.6:1  decorative only, not
-                                             used on form controls
-   ========================================================== */
-
-
-/* ---------- 1. Tokens ------------------------------------------------
-   Every color in the file comes from here.                          */
-
+/* colors */
 html:root {
-  /* Surfaces */
-  --mns-canvas:       #000000;
-  --mns-panel:        #030507;
-  --mns-header:       #0B0E12;
-  --mns-input:        #090C10;
-  --mns-row-alt:      #070A0D;
-  --mns-hover:        #171D24;
+  --bg: #000000;
+  --panel: #030507;
+  --hdr: #0b0e12;
+  --inp: #090c10;
+  --alt: #070a0d;
+  --hov: #171d24;
 
-  /* Lines */
-  --mns-border:       #29313A;   /* panel outlines (decorative)       */
-  --mns-border-ctl:   #5A6573;   /* form controls, needs 3:1          */
-  --mns-divider:      #111820;   /* row dividers                      */
+  --line: #29313a;
+  --line2: #5a6573;
+  --div: #111820;
 
-  /* Text */
-  --mns-text:         #F3F5F7;
-  --mns-muted:        #A9B4C2;
-  --mns-link:         #9DB8D9;   /* links inside post/description text */
+  --txt: #f3f5f7;
+  --dim: #a9b4c2;
+  --lnk: #9db8d9;
 
-  /* Gold — interaction states only */
-  --mns-gold:         #EBC66F;
-  --mns-gold-core:    #FFE6A5;
-  --mns-gold-soft:    rgba(235, 198, 111, .35);
-  --mns-gold-glow:    0 0 5px rgba(235, 198, 111, .35), 0 0 10px rgba(235, 198, 111, .16);
+  --gold: #ebc66f;
+  --gold2: #ffe6a5;
+  --gold-a: rgba(235, 198, 111, .35);
+  --glow: 0 0 5px rgba(235, 198, 111, .35), 0 0 10px rgba(235, 198, 111, .16);
 
-  --mns-radius:       6px;
+  --r: 6px;
 
-  /* Header bar. Glass by default. For NO bar at all, set
-     --mns-header-bar to transparent and --mns-header-blur to none. */
-  --mns-header-bar:   rgba(3, 5, 7, .35);
-  --mns-header-blur:  blur(12px) saturate(120%);
-  --mns-header-edge:  rgba(255, 255, 255, .06);
+  --hdr-glass: rgba(3, 5, 7, .35);
+  --hdr-blur: blur(12px) saturate(120%);
+  --hdr-edge: rgba(255, 255, 255, .06);
 
-  /* Assets (hosted on img.midnightscene.cc) */
-  --mns-wall-desktop: url("https://img.midnightscene.cc/u/ewVGMl.webp");
-  --mns-wall-mobile:  url("https://img.midnightscene.cc/u/eUI1TB.webp");
-  --mns-logo:         url("https://img.midnightscene.cc/u/LSMwZx.webp"); /* pre-trimmed, ~4.9:1 */
-  --mns-logo-w:       297px;
-  --mns-logo-scale:   100%;
-  --mns-logo-pos:     left center;
+  --wall: url("https://img.midnightscene.cc/u/ewVGMl.webp");
+  --wall-m: url("https://img.midnightscene.cc/u/eUI1TB.webp");
+  --logo: url("https://img.midnightscene.cc/u/LSMwZx.webp");
+  --logo-w: 297px;
+  --logo-s: 100%;
+  --logo-p: left center;
 }
 
-
-/* ---------- 2. Site variable overrides -------------------------------
-   The MNS theme builds almost everything from these. html:root beats
-   its :root regardless of load order.                               */
-
+/* site vars */
 html:root {
-  /* Surface scale — the MNS theme derives most surfaces from --bg-0..5 */
-  --body-bg:            var(--mns-canvas);
-  --body-bg-secondary:  var(--mns-panel);
-  --bg-0:               var(--mns-hover);     /* hover / lightest */
-  --bg-1:               var(--mns-panel);
-  --bg-2:               var(--mns-panel);     /* panels, tables   */
-  --bg-3:               var(--mns-header);    /* th, menus, nav   */
-  --bg-4:               var(--mns-header);    /* panel heads      */
-  --bg-5:               var(--mns-row-alt);
+  --body-bg: var(--bg);
+  --body-bg-secondary: var(--panel);
+  --bg-0: var(--hov);
+  --bg-1: var(--panel);
+  --bg-2: var(--panel);
+  --bg-3: var(--hdr);
+  --bg-4: var(--hdr);
+  --bg-5: var(--alt);
 
-  /* Text: replace the lavender-tinted whites with neutral ones */
-  --text-color:                         var(--mns-text);
-  --color-blue:                         var(--mns-text);  /* MNS uses this as the link color */
-  --color-light-blue:                   var(--mns-gold);  /* ...and this as link hover       */
-  --alert-fg:                           var(--mns-text);
-  --article-card-fg:                    var(--mns-text);
-  --article-card-head-fg:               var(--mns-text);
-  --article-card-time-fg:               var(--mns-muted);
-  --breadcrumb-fg:                      var(--mns-muted);
-  --breadcrumb-active-fg:               var(--mns-text);
-  --breadcrumb-hover-fg:                var(--mns-gold);
-  --panel-action-fg:                    var(--mns-muted);
-  --post-fg:                            var(--mns-text);
-  --post-toolbar-fg:                    var(--mns-muted);
-  --post-toolbar-hover-fg:              var(--mns-gold);
-  --post-aside-fg:                      var(--mns-text);
-  --quick-search-fg:                    var(--mns-text);
-  --quick-search-selector-fg:           var(--mns-muted);
-  --quick-search-selector-hover-fg:     var(--mns-text);
-  --quick-search-selector-selected-fg:  var(--mns-gold);
-  --quick-search-result-fg:             var(--mns-text);
-  --quick-search-result-year-fg:        var(--mns-muted);
-  --secondary-nav-tab-fg:               var(--mns-muted);
-  --secondary-nav-tab-hover-fg:         var(--mns-text);
-  --top-nav-dropdown-fg:                var(--mns-text);
-  --top-nav-dropdown-menu-item-fg:      var(--mns-text);
-  --top-nav-dropdown-menu-item-icon-fg: var(--mns-muted);
-  --top-nav-ratio-bar-fg:               var(--mns-text);
-  --top-nav-stats-fg:                   var(--mns-muted);
-  --top-nav-toggle-fg:                  var(--mns-muted);
-  --torrent-row-fg:                     var(--mns-text);
-  --torrent-row-visited-fg:             var(--mns-muted);
-  --torrent-row-sticky-fg:              var(--mns-text);
-  --torrent-row-format-fg:              var(--mns-muted);
-  --torrent-group-text:                 var(--mns-text);
-  --torrent-group-text-muted:           var(--mns-muted);
-  --torrent-group-header-bg:            var(--mns-header);
-  --playlist-card-fg:                   var(--mns-text);
-  --prize-fg:                           var(--mns-text);
-  --prize-heading-fg:                   var(--mns-text);
-  --user-stat-card-fg:                  var(--mns-text);
-  --mediahub-card-fg:                   var(--mns-text);
-  --option-bg:                          var(--mns-input);
-  --option-fg:                          var(--mns-text);
+  --text-color: var(--txt);
+  --color-blue: var(--txt);
+  --color-light-blue: var(--gold);
+  --alert-fg: var(--txt);
+  --article-card-fg: var(--txt);
+  --article-card-head-fg: var(--txt);
+  --article-card-time-fg: var(--dim);
+  --breadcrumb-fg: var(--dim);
+  --breadcrumb-active-fg: var(--txt);
+  --breadcrumb-hover-fg: var(--gold);
+  --panel-action-fg: var(--dim);
+  --post-fg: var(--txt);
+  --post-toolbar-fg: var(--dim);
+  --post-toolbar-hover-fg: var(--gold);
+  --post-aside-fg: var(--txt);
+  --quick-search-fg: var(--txt);
+  --quick-search-selector-fg: var(--dim);
+  --quick-search-selector-hover-fg: var(--txt);
+  --quick-search-selector-selected-fg: var(--gold);
+  --quick-search-result-fg: var(--txt);
+  --quick-search-result-year-fg: var(--dim);
+  --secondary-nav-tab-fg: var(--dim);
+  --secondary-nav-tab-hover-fg: var(--txt);
+  --top-nav-dropdown-fg: var(--txt);
+  --top-nav-dropdown-menu-item-fg: var(--txt);
+  --top-nav-dropdown-menu-item-icon-fg: var(--dim);
+  --top-nav-ratio-bar-fg: var(--txt);
+  --top-nav-stats-fg: var(--dim);
+  --top-nav-toggle-fg: var(--dim);
+  --torrent-row-fg: var(--txt);
+  --torrent-row-visited-fg: var(--dim);
+  --torrent-row-sticky-fg: var(--txt);
+  --torrent-row-format-fg: var(--dim);
+  --torrent-group-text: var(--txt);
+  --torrent-group-text-muted: var(--dim);
+  --torrent-group-header-bg: var(--hdr);
+  --playlist-card-fg: var(--txt);
+  --prize-fg: var(--txt);
+  --prize-heading-fg: var(--txt);
+  --user-stat-card-fg: var(--txt);
+  --mediahub-card-fg: var(--txt);
+  --option-bg: var(--inp);
+  --option-fg: var(--txt);
 
-  /* Panels: slate outline, near-white headings (gold is for states) */
-  --panel-bg:              var(--mns-panel);
-  --panel-border:          1px solid var(--mns-border);
-  --panel-border-radius:   var(--mns-radius);
-  --panel-head-bg:         var(--mns-header);
-  --panel-head-fg:         var(--mns-text);
+  --panel-bg: var(--panel);
+  --panel-border: 1px solid var(--line);
+  --panel-border-radius: var(--r);
+  --panel-head-bg: var(--hdr);
+  --panel-head-fg: var(--txt);
 
-  /* Top nav */
-  --top-nav-bg:                         var(--mns-header);
-  --top-nav-dropdown-hover-bg:          var(--mns-hover);
-  --top-nav-dropdown-menu-bg:           var(--mns-header);
-  --top-nav-dropdown-menu-border:       1px solid var(--mns-border);
-  --top-nav-dropdown-menu-item-hover-bg: var(--mns-hover);
-  --top-nav-dropdown-menu-item-icon-bg: var(--mns-panel);
-  --top-nav-icon-bar-icon-bg:           var(--mns-hover);
-  --top-nav-icon-bar-icon-fg:           var(--mns-text);
-  --top-nav-icon-bar-icon-hover-bg:     var(--mns-hover);
-  --top-nav-icon-bar-icon-hover-fg:     var(--mns-gold);
+  --top-nav-bg: var(--hdr);
+  --top-nav-dropdown-hover-bg: var(--hov);
+  --top-nav-dropdown-menu-bg: var(--hdr);
+  --top-nav-dropdown-menu-border: 1px solid var(--line);
+  --top-nav-dropdown-menu-item-hover-bg: var(--hov);
+  --top-nav-dropdown-menu-item-icon-bg: var(--panel);
+  --top-nav-icon-bar-icon-bg: var(--hov);
+  --top-nav-icon-bar-icon-fg: var(--txt);
+  --top-nav-icon-bar-icon-hover-bg: var(--hov);
+  --top-nav-icon-bar-icon-hover-fg: var(--gold);
 
-  /* Secondary nav: fine gold underline on active tab */
-  --secondary-nav-tab-active-text-decoration: underline var(--mns-gold) 2px;
-  --secondary-nav-tab-hover-text-decoration:  underline var(--mns-border-ctl) 2px;
+  --secondary-nav-tab-active-text-decoration: underline var(--gold) 2px;
+  --secondary-nav-tab-hover-text-decoration: underline var(--line2) 2px;
 
-  /* Tables */
-  --data-table-th-bg:      var(--mns-header);
-  --data-table-tr-odd-bg:  var(--mns-panel);
-  --data-table-tr-even-bg: var(--mns-row-alt);
-  --data-table-tr-hover-bg: var(--mns-hover);
-  --data-table-tr-border:  1px solid var(--mns-divider);
-  --torrent-row-sticky-bg: var(--mns-header);
-  --torrent-row-format-bg: var(--mns-hover);
-  --key-value-odd-bg:      var(--mns-panel);
-  --key-value-even-bg:     var(--mns-row-alt);
+  --data-table-th-bg: var(--hdr);
+  --data-table-tr-odd-bg: var(--panel);
+  --data-table-tr-even-bg: var(--alt);
+  --data-table-tr-hover-bg: var(--hov);
+  --data-table-tr-border: 1px solid var(--div);
+  --torrent-row-sticky-bg: var(--hdr);
+  --torrent-row-format-bg: var(--hov);
+  --key-value-odd-bg: var(--panel);
+  --key-value-even-bg: var(--alt);
 
-  /* Forms: 3:1 control borders, gold focus, no light label patch */
-  --input-text-border:        1px solid var(--mns-border-ctl);
-  --input-text-border-hover:  2px solid var(--mns-muted);
-  --input-text-border-active: 2px solid var(--mns-gold);
-  --input-text-fg:            var(--mns-text);
-  --select-border:            1px solid var(--mns-border-ctl);
-  --select-border-hover:      2px solid var(--mns-muted);
-  --select-border-active:     2px solid var(--mns-gold);
-  --select-fg:                var(--mns-text);
+  --input-text-border: 1px solid var(--line2);
+  --input-text-border-hover: 2px solid var(--dim);
+  --input-text-border-active: 2px solid var(--gold);
+  --input-text-fg: var(--txt);
+  --select-border: 1px solid var(--line2);
+  --select-border-hover: 2px solid var(--dim);
+  --select-border-active: 2px solid var(--gold);
+  --select-fg: var(--txt);
   --select-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='%23A9B4C2' d='M6 8l-1 1l5 5l5-5l-1-1l-4 4l-4-4z'/></svg>");
-  --textarea-border:          1px solid var(--mns-border-ctl);
-  --textarea-border-hover:    2px solid var(--mns-muted);
-  --textarea-border-active:   2px solid var(--mns-gold);
-  --textarea-fg:              var(--mns-text);
-  --fieldset-border:          1px solid var(--mns-border);
-  --fieldset-fg:              var(--mns-text);
-  --legend-fg:                var(--mns-muted);
-  --label-fg:                 var(--mns-muted);
-  --label-fg-hover:           var(--mns-text);
-  --label-fg-active:          var(--mns-gold);
-  --label-bg:                 var(--mns-panel);   /* was light #dfe4ff */
-  --bbcode-input-border:      1px solid var(--mns-border-ctl);
-  --compact-search-bg:        var(--mns-panel);
-  --quick-search-bg:          var(--mns-input);
-  --quick-search-selector-hover-bg:    var(--mns-hover);
-  --quick-search-selector-selected-bg: var(--mns-hover);
-  --quick-search-result-bg:            var(--mns-input);
-  --quick-search-result-hover-bg:      var(--mns-hover);
+  --textarea-border: 1px solid var(--line2);
+  --textarea-border-hover: 2px solid var(--dim);
+  --textarea-border-active: 2px solid var(--gold);
+  --textarea-fg: var(--txt);
+  --fieldset-border: 1px solid var(--line);
+  --fieldset-fg: var(--txt);
+  --legend-fg: var(--dim);
+  --label-fg: var(--dim);
+  --label-fg-hover: var(--txt);
+  --label-fg-active: var(--gold);
+  --label-bg: var(--panel);
+  --bbcode-input-border: 1px solid var(--line2);
+  --compact-search-bg: var(--panel);
+  --quick-search-bg: var(--inp);
+  --quick-search-selector-hover-bg: var(--hov);
+  --quick-search-selector-selected-bg: var(--hov);
+  --quick-search-result-bg: var(--inp);
+  --quick-search-result-hover-bg: var(--hov);
 
-  /* Buttons: no filled gold tiles. Slate fill, gold on hover (section 5) */
-  --button-filled-bg:        var(--mns-hover);
-  --button-filled-fg:        var(--mns-text);
-  --button-filled-border:    1px solid var(--mns-border-ctl);
-  --button-outlined-border:  1px solid var(--mns-border-ctl);
-  --icon-button-filled-bg:   var(--mns-hover);
-  --icon-button-filled-fg:   var(--mns-text);
+  --button-filled-bg: var(--hov);
+  --button-filled-fg: var(--txt);
+  --button-filled-border: 1px solid var(--line2);
+  --button-outlined-border: 1px solid var(--line2);
+  --icon-button-filled-bg: var(--hov);
+  --icon-button-filled-fg: var(--txt);
 
-  /* Pagination: current page gets a gold outline in section 5 */
-  --paginate-bg:           transparent;
-  --paginate-bg-hover:     var(--mns-hover);
-  --paginate-bg-current:   var(--mns-panel);
-  --paginate-fg:           var(--mns-muted);
-  --paginate-fg-disabled:  #4A5563;
-  --paginate-divider:      var(--mns-divider);
+  --paginate-bg: transparent;
+  --paginate-bg-hover: var(--hov);
+  --paginate-bg-current: var(--panel);
+  --paginate-fg: var(--dim);
+  --paginate-fg-disabled: #4a5563;
+  --paginate-divider: var(--div);
 
-  /* Post content */
-  --bbcode-rendered-fg-default:     var(--mns-text);
-  --bbcode-rendered-fg-muted:       var(--mns-muted);
-  --bbcode-rendered-accent-fg:      var(--mns-link);
-  --bbcode-rendered-border-default: var(--mns-border);
-  --bbcode-rendered-border-muted:   var(--mns-divider);
-  --bbcode-rendered-canvas-subtle:  var(--mns-header);
-  --bbcode-rendered-quote-bg:       var(--mns-row-alt);
-  --bbcode-rendered-quote-border:   var(--mns-border-ctl);
+  --bbcode-rendered-fg-default: var(--txt);
+  --bbcode-rendered-fg-muted: var(--dim);
+  --bbcode-rendered-accent-fg: var(--lnk);
+  --bbcode-rendered-border-default: var(--line);
+  --bbcode-rendered-border-muted: var(--div);
+  --bbcode-rendered-canvas-subtle: var(--hdr);
+  --bbcode-rendered-quote-bg: var(--alt);
+  --bbcode-rendered-quote-border: var(--line2);
 
-  /* Misc indicators */
-  --notification-unread:     var(--mns-gold);
-  --meter-fg:                var(--mns-gold);
-  --meter-bg:                var(--mns-hover);
-  --achievement-progress-bg: var(--mns-gold);
-  --footer-hr-fg:            var(--mns-divider);
-  --scrollbar-color:         var(--mns-border);
-  --message-bubble-bg:       var(--mns-header);
-  --dialog-head-fg:          var(--mns-text);
+  --notification-unread: var(--gold);
+  --meter-fg: var(--gold);
+  --meter-bg: var(--hov);
+  --achievement-progress-bg: var(--gold);
+  --footer-hr-fg: var(--div);
+  --scrollbar-color: var(--line);
+  --message-bubble-bg: var(--hdr);
+  --dialog-head-fg: var(--txt);
 }
 
-
-/* ---------- 3. Wallpaper ---------------------------------------------
-   One fixed, viewport-sized layer behind everything. Using a pseudo-
-   element instead of background-attachment:fixed so it also stays put
-   on iOS, and never stretches to document height.
-
-   The MNS theme's own #background-effects layer (its animated
-   stars) is hidden: the approved design uses the wallpaper's stars
-   only. Delete that one rule to bring it back.                      */
-
-html {
-  background-color: var(--mns-canvas);
-}
-html body {
-  background: transparent;   /* body is 1440px wide; its bg would cover the wallpaper */
-}
+/* background */
+html { background-color: var(--bg); }
+html body { background: transparent; }
 html::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: var(--mns-canvas) var(--mns-wall-desktop) left bottom / cover no-repeat;
+  background: var(--bg) var(--wall) left bottom / cover no-repeat;
 }
-html #background-effects {
-  display: none;
-}
+html #background-effects { display: none; }
 
 @media (max-width: 767px) {
   html::before {
-    background-image: var(--mns-wall-mobile);
+    background-image: var(--wall-m);
     background-position: left top;
   }
 }
 
-
-/* ---------- 4. Layout surfaces the MNS theme sets directly -----------
-   It paints <main> and the nav strip at 80% opacity. Make <main>
-   clear so opaque panels float over the wallpaper instead of the
-   whole content area getting a dark veil.                           */
-
+/* layout */
 html main,
-html main:has(> article > section.meta) {
-  background-color: transparent;
-}
+html main:has(> article > section.meta) { background-color: transparent; }
 
-html .text-muted  { color: var(--mns-muted); }
-html .badge-user  { background-color: var(--mns-header); }
-html .footer__icon { color: var(--mns-muted); }
+html .text-muted  { color: var(--dim); }
+html .badge-user  { background-color: var(--hdr); }
+html .footer__icon { color: var(--dim); }
 
-
-/* Header bar (logo + stats row). The MNS theme gives it an 80% navy
-   fill; this replaces that with light glass. Dropdown menus keep their
-   own opaque surfaces from section 2. */
+/* header */
 html .top-nav__left {
-  background-color: var(--mns-header-bar);
-  border: 1px solid var(--mns-header-edge);
-  -webkit-backdrop-filter: var(--mns-header-blur);
-  backdrop-filter: var(--mns-header-blur);
+  background-color: var(--hdr-glass);
+  border: 1px solid var(--hdr-edge);
+  -webkit-backdrop-filter: var(--hdr-blur);
+  backdrop-filter: var(--hdr-blur);
 }
 @media (prefers-reduced-transparency: reduce) {
   html .top-nav__left {
-    background-color: var(--mns-header);
+    background-color: var(--hdr);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 }
 
-
-/* ---------- 5. Logo --------------------------------------------------
-   CSS can't change an <img> src reliably across browsers, so the
-   logo is drawn as a background on the branding link and the
-   original contents are made invisible (still there for screen
-   readers and still clickable).
-   BEST OPTION: if staff can set the site logo directly, do that
-   and delete this section.                                          */
-
+/* logo */
 html .top-nav__branding {
-  width: var(--mns-logo-w);
-  /* Logo file is pre-trimmed, so it just fits the 60px slot. */
-  background: var(--mns-logo) var(--mns-logo-pos) / auto var(--mns-logo-scale) no-repeat;
+  width: var(--logo-w);
+  background: var(--logo) var(--logo-p) / auto var(--logo-s) no-repeat;
 }
-html .top-nav__branding > * {
-  opacity: 0;
-}
+html .top-nav__branding > * { opacity: 0; }
 
-
-/* ---------- 6. Gold states -------------------------------------------*/
-
-/* Current pagination page: dark center, thin gold outline, gold numeral.
-   The outline is an inset shadow, not a border, so the box stays exactly
-   the size the site expects. A real border made the page list 2px too
-   big and triggered the scrollbars in the middle of the pagination. */
+/* gold stuff */
 html .pagination__current {
-  color: var(--mns-gold-core);
-  background: var(--mns-panel);
-  box-shadow: inset 0 0 0 1px var(--mns-gold);
+  color: var(--gold2);
+  background: var(--panel);
+  box-shadow: inset 0 0 0 1px var(--gold);
   border-radius: 5px;
 }
-html .pagination__link:hover { color: var(--mns-gold); }
+html .pagination__link:hover { color: var(--gold); }
 
-/* Buttons: gold outline on hover, never a gold fill */
 html :is(.form__button--filled, .form__button--outlined):hover {
-  border-color: var(--mns-gold);
-  color: var(--mns-gold);
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
-/* Hovered/focused table row: short gold marker at the left edge.
-   Drawn as a background on the first cell instead of a ::before, because
-   on the torrent list the first cell is the poster, which holds the
-   hover popup. Making it position:relative could move that popup.
-   VERIFIED: torrent list rows. Other tables use the same rule. */
 html .data-table > tbody > tr:is(:hover, :focus-within) > td:first-child {
-  background-image: linear-gradient(var(--mns-gold-core), var(--mns-gold-core));
+  background-image: linear-gradient(var(--gold2), var(--gold2));
   background-repeat: no-repeat;
   background-position: 3px 8px;
   background-size: 2px calc(100% - 16px);
 }
 
-/* Main nav active tab. UNIT3D doesn't mark the current section in the
-   top nav, so this keys off the page class on <main> instead.
-   VERIFIED: Torrents (main.page__torrent--index). Other menus need
-   their page classes before they get the same treatment. */
 html:has(main[class*="page__torrent"]) .top-nav__dropdown--nontouch[href$="/torrents"] .top-nav--left__container {
-  color: var(--mns-gold);
+  color: var(--gold);
   font-weight: 650;
-  text-decoration: underline 2px var(--mns-gold-core);
+  text-decoration: underline 2px var(--gold2);
   text-underline-offset: 6px;
 }
 
-/* Secondary tabs (Search / Trending / Upload ...). VERIFIED class. */
+html .top-nav__main-menus > li:is(:hover, :focus-within) .top-nav--left__container { color: var(--gold); }
+html .top-nav__dropdown > ul > li > a:is(:hover, :focus-visible),
+html .top-nav__dropdown > ul > li > a:is(:hover, :focus-visible) > i { color: var(--gold); }
+
 html .nav-tab--active__link {
-  color: var(--mns-text);
-  text-decoration: underline 2px var(--mns-gold);
+  color: var(--txt);
+  text-decoration: underline 2px var(--gold);
   text-underline-offset: 6px;
 }
 
-/* Quick search in the header. VERIFIED class. No separate icon
-   segment exists in the markup, so no segment marker. */
 html .quick-search__input {
-  background-color: var(--mns-input);
-  border: 1px solid var(--mns-border-ctl);
-  color: var(--mns-text);
+  background-color: var(--inp);
+  border: 1px solid var(--line2);
+  color: var(--txt);
 }
-html .quick-search__input::placeholder { color: var(--mns-muted); }
+html .quick-search__input::placeholder { color: var(--dim); }
 html .quick-search__input:focus {
-  border-color: var(--mns-gold);
-  outline: 2px solid var(--mns-gold);
+  border-color: var(--gold);
+  outline: 2px solid var(--gold);
   outline-offset: 1px;
   box-shadow: 0 0 6px rgba(235, 198, 111, .16);
 }
 
-/* Keyboard focus: always visible, static (no pulse) */
 html :where(a, button, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--mns-gold);
+  outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
 
-/* Links in post/description text: readable blue-slate, underlined,
-   so they're distinguishable without making every link gold */
 html .bbcode-rendered a {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-html .bbcode-rendered a:hover { color: var(--mns-gold); }
+html .bbcode-rendered a:hover { color: var(--gold); }
 
 html ::selection {
-  background-color: var(--mns-gold-soft);
+  background-color: var(--gold-a);
   color: #fff;
 }
-
-
-/* ---------- 7. Not done yet ------------------------------------------
-   - Main nav gold state for Community / other menus: need page classes
-     from those pages (right-click page -> Inspect -> the <main> tag).
-   - Optional Light Frost surfaces (#6): separate small file later.
-*/
