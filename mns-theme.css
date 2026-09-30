@@ -1,6 +1,6 @@
 /* ==========================================================
    MidnightScene — OLED / Gold  (working title)
-   Version 0.5 — live asset URLs, ready to install
+   Version 0.6 — pagination scrollbar fix, glass header
 
    Base     Requires the site's "MidnightScene" style. Built against
             _midnightscene-*.css variables, not stock Galactic.
@@ -46,6 +46,12 @@ html:root {
   --mns-gold-glow:    0 0 5px rgba(235, 198, 111, .35), 0 0 10px rgba(235, 198, 111, .16);
 
   --mns-radius:       6px;
+
+  /* Header bar. Glass by default. For NO bar at all, set
+     --mns-header-bar to transparent and --mns-header-blur to none. */
+  --mns-header-bar:   rgba(3, 5, 7, .35);
+  --mns-header-blur:  blur(12px) saturate(120%);
+  --mns-header-edge:  rgba(255, 255, 255, .06);
 
   /* Assets (hosted on img.midnightscene.cc) */
   --mns-wall-desktop: url("https://img.midnightscene.cc/u/QpY7lD.png"); /* 1672x941 */
@@ -266,6 +272,24 @@ html .badge-user  { background-color: var(--mns-header); }
 html .footer__icon { color: var(--mns-muted); }
 
 
+/* Header bar (logo + stats row). The MNS theme gives it an 80% navy
+   fill; this replaces that with light glass. Dropdown menus keep their
+   own opaque surfaces from section 2. */
+html .top-nav__left {
+  background-color: var(--mns-header-bar);
+  border: 1px solid var(--mns-header-edge);
+  -webkit-backdrop-filter: var(--mns-header-blur);
+  backdrop-filter: var(--mns-header-blur);
+}
+@media (prefers-reduced-transparency: reduce) {
+  html .top-nav__left {
+    background-color: var(--mns-header);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+
 /* ---------- 5. Logo --------------------------------------------------
    CSS can't change an <img> src reliably across browsers, so the
    logo is drawn as a background on the branding link and the
@@ -288,14 +312,15 @@ html .top-nav__branding > * {
 
 /* ---------- 6. Gold states -------------------------------------------*/
 
-/* Current pagination page: dark center, thin gold outline, gold numeral */
+/* Current pagination page: dark center, thin gold outline, gold numeral.
+   The outline is an inset shadow, not a border, so the box stays exactly
+   the size the site expects. A real border made the page list 2px too
+   big and triggered the scrollbars in the middle of the pagination. */
 html .pagination__current {
   color: var(--mns-gold-core);
   background: var(--mns-panel);
-  border: 1px solid var(--mns-gold);
+  box-shadow: inset 0 0 0 1px var(--mns-gold);
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba(235, 198, 111, .24);
-  font-weight: 650;
 }
 html .pagination__link:hover { color: var(--mns-gold); }
 
