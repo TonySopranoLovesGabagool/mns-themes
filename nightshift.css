@@ -28,9 +28,9 @@ html:root {
   --hdr-blur: blur(12px) saturate(120%);
   --hdr-edge: rgba(255, 255, 255, .06);
 
-  --wall: url("https://img.midnightscene.cc/u/ewVGMl.webp");
-  --wall-m: url("https://img.midnightscene.cc/u/eUI1TB.webp");
-  --logo: url("https://img.midnightscene.cc/u/LSMwZx.webp");
+  --wall: url("ns-bg-desktop.webp");
+  --wall-m: url("ns-bg-mobile.webp");
+  --logo: url("ns-logo.webp");
   --logo-w: 297px;
   --logo-s: 100%;
   --logo-p: left center;
@@ -183,7 +183,7 @@ html:root {
 }
 
 /* background */
-html { background-color: var(--bg); }
+html { background-color: var(--bg); color-scheme: dark; }
 html body { background: transparent; }
 html::before {
   content: "";
