@@ -290,10 +290,7 @@ html :is(.compact-search, .torrent-search__filters) .form__text {
 }
 
 html .form__select { background-color: var(--inp); }
-html .form__label--floating {
-  padding: 0 5px;
-  border-radius: 4px;
-}
+html .panel__header .panel__actions { padding-top: 8px; }
 
 @media (prefers-reduced-transparency: reduce) {
   html :is(.panelV2, .top-nav__left, .secondary-nav, .torrent-search__filters, .top-nav__main-menus > li, .top-nav__dropdown > ul) {
