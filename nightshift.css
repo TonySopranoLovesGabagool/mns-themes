@@ -298,3 +298,10 @@ html ::selection {
   background-color: var(--gold-a);
   color: #fff;
 }
+
+/* torrent page backdrop: fade it into the wallpaper instead of a hard-edged glare */
+html:root { --meta-backdrop-filter: brightness(28%) blur(10px); }
+html .meta__backdrop {
+  -webkit-mask-image: radial-gradient(ellipse 60% 75% at 50% 30%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 75% at 50% 30%, #000 35%, transparent 100%);
+}
