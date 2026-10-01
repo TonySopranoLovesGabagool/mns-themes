@@ -36,9 +36,9 @@ html:root {
   --shine: linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, 0) 38%);
   --lift: inset 0 1px 0 rgba(255, 255, 255, .16), inset 0 0 0 1px rgba(255, 255, 255, .03), 0 12px 32px rgba(0, 0, 0, .45);
 
-  --wall: url("https://img.midnightscene.cc/u/usA5Dj.webp");
-  --wall-m: url("https://img.midnightscene.cc/u/T6iVoV.webp");
-  --logo: url("https://img.midnightscene.cc/u/b4vEDH.webp");
+  --wall: url("ml-bg-desktop.webp");
+  --wall-m: url("ml-bg-mobile.webp");
+  --logo: url("ml-logo.webp");
   --logo-w: 383px;
 }
 
