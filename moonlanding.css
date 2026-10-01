@@ -290,7 +290,7 @@ html :is(.compact-search, .torrent-search__filters) .form__text {
 
 html .form__select { background-color: transparent; }
 html .panel__header { --label-bg: #303234; }
-html .panel__header .panel__actions { padding: 8px 12px 0 0; }
+html .panel__header { padding-top: 6px; }
 
 @media (prefers-reduced-transparency: reduce) {
   html :is(.panelV2, .top-nav__left, .secondary-nav, .torrent-search__filters, .top-nav__main-menus > li, .top-nav__dropdown > ul) {
