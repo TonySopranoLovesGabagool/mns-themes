@@ -28,9 +28,9 @@ html:root {
   --hdr-blur: blur(12px) saturate(120%);
   --hdr-edge: rgba(255, 255, 255, .06);
 
-  --wall: url("ns-bg-desktop.webp");
-  --wall-m: url("ns-bg-mobile.webp");
-  --logo: url("ns-logo.webp");
+  --wall: url("assets/nightshift/bg-desktop.webp");
+  --wall-m: url("assets/nightshift/bg-mobile.webp");
+  --logo: url("assets/nightshift/logo.webp");
   --logo-w: 297px;
   --logo-s: 100%;
   --logo-p: left center;

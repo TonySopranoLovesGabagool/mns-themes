@@ -1,0 +1,405 @@
+/* mns blackout - amber */
+
+/* wordmark font: Michroma (SIL Open Font License) */
+@font-face {
+  font-family: "Blackout Michroma";
+  src: url("assets/blackout/michroma.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* colors */
+html:root {
+  --bg: #000000;
+  --panel: #0a0a0b;
+  --raise: #121214;
+  --hdr: #0e0e10;
+  --alt: #16161a;
+  --hov: #1f1f24;
+
+  --line: rgba(255, 255, 255, .08);
+  --line2: rgba(255, 255, 255, .22);
+  --div: rgba(255, 255, 255, .07);
+
+  --txt: #f4f4f5;
+  --dim: #a1a1aa;
+
+  --ac: #fbbf24;
+  --ac2: #fde68a;
+  --ac-a: rgba(251, 191, 36, .35);
+  --ac-wash: rgba(251, 191, 36, .08);
+  --ring: 0 0 0 1px var(--ac), 0 0 12px rgba(251, 191, 36, .25);
+
+  --r: 10px;
+}
+
+/* site vars */
+html:root {
+  --body-bg: var(--bg);
+  --body-bg-secondary: var(--panel);
+  --bg-0: var(--hov);
+  --bg-1: var(--panel);
+  --bg-2: var(--panel);
+  --bg-3: var(--hdr);
+  --bg-4: var(--hdr);
+  --bg-5: var(--alt);
+
+  --text-color: var(--txt);
+  --color-blue: var(--txt);
+  --color-light-blue: var(--ac);
+  --alert-fg: var(--txt);
+  --article-card-fg: var(--txt);
+  --article-card-head-fg: var(--txt);
+  --article-card-time-fg: var(--dim);
+  --breadcrumb-fg: var(--dim);
+  --breadcrumb-active-fg: var(--txt);
+  --breadcrumb-hover-fg: var(--ac);
+  --panel-action-fg: var(--dim);
+  --post-fg: var(--txt);
+  --post-toolbar-fg: var(--dim);
+  --post-toolbar-hover-fg: var(--ac);
+  --post-aside-fg: var(--txt);
+  --quick-search-fg: var(--txt);
+  --quick-search-selector-fg: var(--dim);
+  --quick-search-selector-hover-fg: var(--txt);
+  --quick-search-selector-selected-fg: var(--ac);
+  --quick-search-result-fg: var(--txt);
+  --quick-search-result-year-fg: var(--dim);
+  --secondary-nav-bg: var(--panel);
+  --secondary-nav-tab-fg: var(--dim);
+  --secondary-nav-tab-hover-fg: var(--txt);
+  --top-nav-bg: var(--panel);
+  --top-nav-dropdown-fg: var(--txt);
+  --top-nav-dropdown-hover-bg: transparent;
+  --top-nav-dropdown-menu-bg: var(--raise);
+  --top-nav-dropdown-menu-border: 1px solid var(--line);
+  --top-nav-dropdown-menu-border-radius: var(--r);
+  --top-nav-dropdown-menu-item-fg: var(--txt);
+  --top-nav-dropdown-menu-item-hover-bg: var(--ac-wash);
+  --top-nav-dropdown-menu-item-icon-fg: var(--dim);
+  --top-nav-dropdown-menu-item-icon-bg: var(--hov);
+  --top-nav-icon-bar-icon-bg: var(--hov);
+  --top-nav-icon-bar-icon-fg: var(--txt);
+  --top-nav-icon-bar-icon-hover-bg: var(--hov);
+  --top-nav-icon-bar-icon-hover-fg: var(--ac);
+  --top-nav-ratio-bar-fg: var(--txt);
+  --top-nav-stats-fg: var(--dim);
+  --top-nav-toggle-fg: var(--dim);
+  --torrent-row-fg: var(--txt);
+  --torrent-row-visited-fg: var(--dim);
+  --torrent-row-sticky-fg: var(--txt);
+  --torrent-row-sticky-bg: var(--hdr);
+  --torrent-row-format-fg: var(--dim);
+  --torrent-row-format-bg: var(--hov);
+  --torrent-group-text: var(--txt);
+  --torrent-group-text-muted: var(--dim);
+  --torrent-group-header-bg: var(--hdr);
+  --playlist-card-fg: var(--txt);
+  --prize-fg: var(--txt);
+  --prize-heading-fg: var(--txt);
+  --user-stat-card-fg: var(--txt);
+  --mediahub-card-fg: var(--txt);
+  --option-bg: var(--raise);
+  --option-fg: var(--txt);
+  --dialog-bg: var(--panel);
+  --dialog-head-bg: var(--hdr);
+  --dialog-head-fg: var(--txt);
+
+  --panel-bg: var(--panel);
+  --panel-border: 1px solid var(--line);
+  --panel-border-radius: var(--r);
+  --panel-head-bg: var(--hdr);
+  --panel-head-fg: var(--txt);
+
+  --secondary-nav-tab-active-text-decoration: underline var(--ac) 2px;
+  --secondary-nav-tab-hover-text-decoration: underline var(--line2) 2px;
+
+  --data-table-th-bg: var(--hdr);
+  --data-table-tr-odd-bg: var(--panel);
+  --data-table-tr-even-bg: var(--alt);
+  --data-table-tr-hover-bg: var(--hov);
+  --data-table-tr-border: 1px solid var(--div);
+  --key-value-odd-bg: var(--panel);
+  --key-value-even-bg: var(--alt);
+  --subforum-listing-odd-bg: var(--alt);
+
+  --input-text-border: 1px solid var(--line2);
+  --input-text-border-hover: 2px solid var(--dim);
+  --input-text-border-active: 2px solid var(--ac);
+  --input-text-fg: var(--txt);
+  --select-border: 1px solid var(--line2);
+  --select-border-hover: 2px solid var(--dim);
+  --select-border-active: 2px solid var(--ac);
+  --select-fg: var(--txt);
+  --select-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='%23A1A1AA' d='M6 8l-1 1l5 5l5-5l-1-1l-4 4l-4-4z'/></svg>");
+  --textarea-border: 1px solid var(--line2);
+  --textarea-border-hover: 2px solid var(--dim);
+  --textarea-border-active: 2px solid var(--ac);
+  --textarea-fg: var(--txt);
+  --fieldset-border: 1px solid var(--line);
+  --fieldset-fg: var(--txt);
+  --legend-fg: var(--dim);
+  --label-fg: var(--dim);
+  --label-fg-hover: var(--txt);
+  --label-fg-active: var(--ac);
+  --label-bg: var(--panel);
+  --bbcode-input-border: 1px solid var(--line2);
+  --compact-search-bg: transparent;
+  --quick-search-bg: var(--raise);
+  --quick-search-selector-hover-bg: var(--ac-wash);
+  --quick-search-selector-selected-bg: var(--ac-wash);
+  --quick-search-result-bg: var(--raise);
+  --quick-search-result-hover-bg: var(--ac-wash);
+
+  --button-filled-bg: var(--hov);
+  --button-filled-fg: var(--txt);
+  --button-filled-border: 1px solid var(--line2);
+  --button-outlined-border: 1px solid var(--line2);
+  --icon-button-filled-bg: var(--hov);
+  --icon-button-filled-fg: var(--txt);
+
+  --paginate-bg: transparent;
+  --paginate-bg-hover: var(--hov);
+  --paginate-bg-current: transparent;
+  --paginate-fg: var(--dim);
+  --paginate-fg-disabled: #52525b;
+  --paginate-divider: var(--div);
+
+  --bbcode-rendered-fg-default: var(--txt);
+  --bbcode-rendered-fg-muted: var(--dim);
+  --bbcode-rendered-accent-fg: var(--ac);
+  --bbcode-rendered-border-default: var(--line);
+  --bbcode-rendered-border-muted: var(--div);
+  --bbcode-rendered-canvas-subtle: var(--hdr);
+  --bbcode-rendered-quote-bg: var(--alt);
+  --bbcode-rendered-quote-border: var(--ac);
+
+  --notification-unread: var(--ac);
+  --meter-fg: var(--ac);
+  --meter-bg: var(--hov);
+  --achievement-progress-bg: var(--ac);
+  --footer-hr-fg: var(--div);
+  --scrollbar-color: rgba(255, 255, 255, .16);
+  --message-bubble-bg: var(--raise);
+  --chatbox-message-bg: var(--raise);
+  --meta-backdrop-filter: brightness(22%) blur(12px);
+}
+
+/* base */
+html { background-color: var(--bg); color-scheme: dark; }
+html body { background: var(--bg); }
+html #background-effects { display: none; }
+html main,
+html main:has(> article > section.meta) { background-color: transparent; }
+html body > header { position: relative; z-index: 20; }
+html .top-nav { z-index: 30; }
+html .secondary-nav { z-index: 1; }
+
+html .text-muted  { color: var(--dim); }
+html .badge-user  { background-color: var(--raise); }
+html .footer__icon { color: var(--dim); }
+
+/* surfaces */
+html :is(.panelV2, .top-nav__left, .secondary-nav) {
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+}
+html .torrent-search__filters { background-color: var(--panel); border-radius: var(--r); }
+html .panel__header :is(.panel__heading, .panel__actions, .panel__action, .panel__action-text) { background: transparent; }
+html .panel__header { --label-bg: var(--hdr); }
+html .form__select { background-color: transparent; }
+
+html .top-nav__main-menus > li {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+html .top-nav__main-menus > li:is(:hover, :focus-within) {
+  background-color: var(--ac-wash);
+  border-color: var(--ac);
+  box-shadow: 0 0 10px rgba(251, 191, 36, .18);
+}
+html .top-nav__dropdown > ul {
+  z-index: 40;
+  background: var(--raise);
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .6);
+}
+
+/* logo: the site's own mark + name, recolored to fit */
+html .top-nav__branding {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 8px;
+  text-decoration: none;
+}
+html .top-nav__branding > img {
+  height: 34px !important;
+  width: auto;
+  border-radius: 50%;
+  filter: grayscale(1) brightness(1.15) contrast(1.15) drop-shadow(0 0 8px rgba(251, 191, 36, .55));
+  transition: filter .2s ease;
+}
+html .top-nav__branding:hover > img {
+  filter: grayscale(1) brightness(1.25) contrast(1.15) drop-shadow(0 0 14px rgba(251, 191, 36, .85));
+}
+html .top-nav__branding .top-nav__site-logo {
+  font-family: "Blackout Michroma", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  background: linear-gradient(90deg, var(--txt) 0 57%, var(--ac) 57% 100%);
+  text-transform: uppercase;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* touches */
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% -8%, rgba(251, 191, 36, .14), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 100% 100%, rgba(251, 191, 36, .05), transparent 70%);
+}
+html body { background: transparent; }
+html :is(.panelV2, .top-nav__left, .secondary-nav) {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, 0) 120px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07), 0 10px 30px rgba(0, 0, 0, .5);
+}
+html .panelV2 .panelV2 { box-shadow: none; background-image: none; }
+html .panel__heading { color: var(--txt); }
+html .panelV2:hover { border-color: rgba(251, 191, 36, .22); }
+html .panelV2 { transition: border-color .2s ease; }
+
+/* accent */
+html .pagination__current {
+  color: var(--ac);
+  background: var(--ac-wash);
+  box-shadow: inset 0 0 0 1px var(--ac);
+  border-radius: 6px;
+}
+html .pagination__link:hover { color: var(--ac); }
+
+html :is(.form__button--filled, .form__button--outlined) {
+  transition: border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+html :is(.form__button--filled, .form__button--outlined):hover {
+  border-color: var(--ac);
+  color: var(--ac);
+  box-shadow: 0 0 10px rgba(251, 191, 36, .2);
+}
+
+html .form__standard-icon-button:hover,
+html .torrent-search--list__buttons :is(a, button):hover,
+html .top-nav--right__icon-link:hover { color: var(--ac); }
+
+html .data-table > tbody > tr:nth-child(even) { background-color: var(--alt); }
+html .data-table > tbody > tr:is(:hover, :focus-within) { background-color: var(--hov); }
+html .data-table > tbody > tr > td { border-bottom: 1px solid var(--div); }
+
+html .data-table > tbody > tr:is(:hover, :focus-within) > td:first-child {
+  background-image: linear-gradient(var(--ac), var(--ac));
+  background-repeat: no-repeat;
+  background-position: 3px 8px;
+  background-size: 2px calc(100% - 16px);
+}
+
+html:has(main[class*="page__torrent"]) .top-nav__dropdown--nontouch[href$="/torrents"] .top-nav--left__container {
+  color: var(--ac);
+  font-weight: 650;
+  text-decoration: underline 2px var(--ac);
+  text-underline-offset: 6px;
+}
+html .top-nav__main-menus > li:is(:hover, :focus-within) .top-nav--left__container { color: var(--ac); }
+html .top-nav__dropdown > ul > li > a:is(:hover, :focus-visible),
+html .top-nav__dropdown > ul > li > a:is(:hover, :focus-visible) > i { color: var(--ac); }
+
+html .nav-tab--active__link {
+  color: var(--txt);
+  text-decoration: underline 2px var(--ac);
+  text-underline-offset: 6px;
+}
+
+html .quick-search__input {
+  background-color: var(--panel);
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  color: var(--txt);
+}
+html .quick-search__input::placeholder { color: var(--dim); }
+html :is(.quick-search__input, .form__text, .form__select, .form__textarea):focus {
+  border-color: var(--ac);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, .18);
+}
+
+html :where(a, button, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ac);
+  outline-offset: 2px;
+}
+
+html .bbcode-rendered a { text-decoration: underline; text-underline-offset: 2px; }
+html .meta__backdrop { display: none; }
+
+html ::selection { background-color: var(--ac-a); color: #fff; }
+
+/* polish */
+html { scrollbar-width: thin; scrollbar-color: rgba(251, 191, 36, .45) var(--bg); }
+html ::-webkit-scrollbar { width: 8px; height: 8px; }
+html ::-webkit-scrollbar-track { background: var(--bg); }
+html ::-webkit-scrollbar-thumb { background: rgba(251, 191, 36, .35); border-radius: 8px; border: 2px solid var(--bg); }
+html ::-webkit-scrollbar-thumb:hover { background: rgba(251, 191, 36, .6); }
+
+html input:-webkit-autofill,
+html input:-webkit-autofill:hover,
+html input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--txt);
+  -webkit-box-shadow: 0 0 0 1000px var(--panel) inset;
+  caret-color: var(--txt);
+  transition: background-color 9999s;
+}
+html ::placeholder { color: var(--dim); opacity: .8; }
+
+html :is(.data-table, .top-nav__ratio-bar, .pagination) { font-variant-numeric: tabular-nums; }
+
+html .torrent-search--list__poster-img {
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px var(--line);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+html .data-table > tbody > tr:hover .torrent-search--list__poster-img {
+  transform: scale(1.04);
+  box-shadow: 0 0 0 1px rgba(251, 191, 36, .5), 0 6px 16px rgba(0, 0, 0, .6);
+}
+
+html .torrent-icons__featured { color: var(--ac); }
+
+html .footer .top-nav__site-logo {
+  font-family: "Blackout Michroma", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  letter-spacing: .08em;
+  background: linear-gradient(90deg, var(--txt) 0 57%, var(--ac) 57% 100%);
+  text-transform: uppercase;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+html .footer img[src*="favicon"] { filter: grayscale(1) brightness(1.15); }
+html .footer a:hover { color: var(--ac); }
+
+html .post { transition: box-shadow .2s ease; }
+html .post:focus-within { box-shadow: 0 0 0 1px rgba(251, 191, 36, .35); }
+
+@media (prefers-reduced-motion: reduce) {
+  html * { transition: none !important; }
+}
