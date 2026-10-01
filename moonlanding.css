@@ -6,7 +6,7 @@ html:root {
 
   --glass: rgba(22, 24, 28, .62);
   --glass-hi: rgba(22, 24, 28, .78);
-  --menu: rgba(16, 18, 21, .94);
+  --menu: rgba(16, 18, 21, .96);
   --solid: #181a1d;
   --hdr: rgba(255, 255, 255, .045);
   --inp: rgba(10, 11, 13, .72);
@@ -155,7 +155,7 @@ html:root {
   --label-fg: var(--dim);
   --label-fg-hover: var(--txt);
   --label-fg-active: var(--cy);
-  --label-bg: #17191d;
+  --label-bg: #121417;
   --bbcode-input-border: 1px solid var(--line2);
   --bbcode-input-header-bg: var(--hdr);
   --bbcode-input-body-bg: var(--inp);
@@ -236,7 +236,7 @@ html .badge-user  { background-color: var(--raise); }
 html .footer__icon { color: var(--dim); }
 
 /* glass */
-html :is(.panelV2, .top-nav__left, .secondary-nav, .torrent-search__filters, .compact-search) {
+html :is(.panelV2, .top-nav__left, .secondary-nav, .torrent-search__filters) {
   background-color: var(--glass);
   background-image: var(--shine);
   border: 1px solid var(--edge);
@@ -253,12 +253,13 @@ html .panelV2 .panelV2 {
 }
 html .panelV2:hover { border-color: var(--edge-hi); }
 
+html .top-nav { z-index: 30; }
+html .secondary-nav { z-index: 1; }
+
 html .top-nav__main-menus > li {
-  background: var(--glass);
+  background: var(--glass-hi);
   border: 1px solid var(--edge);
   border-radius: 10px;
-  -webkit-backdrop-filter: var(--blur);
-  backdrop-filter: var(--blur);
   transition: border-color .2s ease, box-shadow .2s ease;
 }
 html .top-nav__main-menus > li:is(:hover, :focus-within) {
@@ -267,6 +268,7 @@ html .top-nav__main-menus > li:is(:hover, :focus-within) {
 }
 
 html .top-nav__dropdown > ul {
+  z-index: 40;
   background: var(--menu);
   border: 1px solid var(--edge);
   box-shadow: var(--lift);
@@ -275,9 +277,26 @@ html .top-nav__dropdown > ul {
 }
 
 html .panel__heading { border-bottom: 1px solid var(--div); }
+html .panel__header :is(.panel__heading, .panel__actions, .panel__action, .panel__action-text) { background: transparent; }
+
+html .compact-search {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+html :is(.compact-search, .torrent-search__filters) .form__text {
+  background-color: var(--inp);
+  border-radius: 10px;
+}
+
+html .form__select { background-color: var(--inp); }
+html .form__label--floating {
+  padding: 0 5px;
+  border-radius: 4px;
+}
 
 @media (prefers-reduced-transparency: reduce) {
-  html :is(.panelV2, .top-nav__left, .secondary-nav, .torrent-search__filters, .compact-search, .top-nav__main-menus > li, .top-nav__dropdown > ul) {
+  html :is(.panelV2, .top-nav__left, .secondary-nav, .torrent-search__filters, .top-nav__main-menus > li, .top-nav__dropdown > ul) {
     background-color: var(--solid);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
