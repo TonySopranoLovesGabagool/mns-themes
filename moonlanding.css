@@ -155,7 +155,7 @@ html:root {
   --label-fg: var(--dim);
   --label-fg-hover: var(--txt);
   --label-fg-active: var(--cy);
-  --label-bg: #121417;
+  --label-bg: #232325;
   --bbcode-input-border: 1px solid var(--line2);
   --bbcode-input-header-bg: var(--hdr);
   --bbcode-input-body-bg: var(--inp);
@@ -276,7 +276,6 @@ html .top-nav__dropdown > ul {
   backdrop-filter: var(--blur);
 }
 
-html .panel__heading { border-bottom: 1px solid var(--div); }
 html .panel__header :is(.panel__heading, .panel__actions, .panel__action, .panel__action-text) { background: transparent; }
 
 html .compact-search {
@@ -289,8 +288,9 @@ html :is(.compact-search, .torrent-search__filters) .form__text {
   border-radius: 10px;
 }
 
-html .form__select { background-color: var(--inp); }
-html .panel__header .panel__actions { padding-top: 8px; }
+html .form__select { background-color: transparent; }
+html .panel__header { --label-bg: #303234; }
+html .panel__header .panel__actions { padding: 8px 12px 0 0; }
 
 @media (prefers-reduced-transparency: reduce) {
   html :is(.panelV2, .top-nav__left, .secondary-nav, .torrent-search__filters, .top-nav__main-menus > li, .top-nav__dropdown > ul) {
