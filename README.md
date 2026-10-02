@@ -12,9 +12,40 @@ To go back to the default look, clear the box and save. Updates apply automatica
 
 ## Themes
 
-| Theme | Look | Link |
-| --- | --- | --- |
-| Nightshift | OLED black, night sky wallpaper, gold accents | `https://tonysopranolovesgabagool.github.io/mns-themes/nightshift.css` |
-| Moon Landing | Liquid glass over the moon's surface, cyan accents | `https://tonysopranolovesgabagool.github.io/mns-themes/moonlanding.css` |
+### Nightshift
+OLED black, night sky wallpaper, gold accents.
+```
+https://tonysopranolovesgabagool.github.io/mns-themes/nightshift.css
+```
+
+### Moon Landing
+Liquid glass over the moon's surface, cyan accents.
+```
+https://tonysopranolovesgabagool.github.io/mns-themes/moonlanding.css
+```
+
+### Blackout
+Pure OLED black, clean and minimal. Pick your accent color.
+
+Blue
+```
+https://tonysopranolovesgabagool.github.io/mns-themes/blackout-blue.css
+```
+Violet
+```
+https://tonysopranolovesgabagool.github.io/mns-themes/blackout-violet.css
+```
+Rose
+```
+https://tonysopranolovesgabagool.github.io/mns-themes/blackout-rose.css
+```
+Amber
+```
+https://tonysopranolovesgabagool.github.io/mns-themes/blackout-amber.css
+```
+Lime
+```
+https://tonysopranolovesgabagool.github.io/mns-themes/blackout-lime.css
+```
 
 Something look off? Send me a screenshot and the page it's on.
