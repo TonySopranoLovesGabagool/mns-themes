@@ -10,14 +10,14 @@ html:root {
   --solid: #181a1d;
   --hdr: rgba(255, 255, 255, .045);
   --inp: rgba(10, 11, 13, .72);
-  --alt: rgba(255, 255, 255, .025);
+  --alt: rgba(255, 255, 255, .05);
   --hov: rgba(57, 231, 242, .08);
   --raise: #23262b;
 
   --edge: rgba(255, 255, 255, .10);
   --edge-hi: rgba(255, 255, 255, .18);
   --line2: rgba(141, 147, 155, .55);
-  --div: rgba(141, 147, 155, .12);
+  --div: rgba(141, 147, 155, .16);
 
   --txt: #f2f4f6;
   --dim: #b7bec8;
@@ -424,9 +424,39 @@ html ::selection {
   html * { transition: none !important; }
 }
 
-/* torrent page backdrop: fade it into the wallpaper instead of a hard-edged glare */
-html:root { --meta-backdrop-filter: brightness(28%) blur(10px); }
-html .meta__backdrop {
-  -webkit-mask-image: radial-gradient(ellipse 60% 75% at 50% 30%, #000 35%, transparent 100%);
-  mask-image: radial-gradient(ellipse 60% 75% at 50% 30%, #000 35%, transparent 100%);
+/* torrent page: hide the movie backdrop so the moon shows on every page */
+html .meta__backdrop { display: none; }
+
+/* polish */
+html { scrollbar-width: thin; scrollbar-color: rgba(57, 231, 242, .4) var(--bg); }
+html ::-webkit-scrollbar { width: 8px; height: 8px; }
+html ::-webkit-scrollbar-track { background: var(--bg); }
+html ::-webkit-scrollbar-thumb { background: rgba(57, 231, 242, .3); border-radius: 8px; border: 2px solid var(--bg); }
+html ::-webkit-scrollbar-thumb:hover { background: rgba(57, 231, 242, .55); }
+
+html input:-webkit-autofill,
+html input:-webkit-autofill:hover,
+html input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--txt);
+  -webkit-box-shadow: 0 0 0 1000px var(--solid) inset;
+  caret-color: var(--txt);
+  transition: background-color 9999s;
 }
+html ::placeholder { color: var(--dim); opacity: .8; }
+
+html :is(.data-table, .top-nav__ratio-bar, .pagination) { font-variant-numeric: tabular-nums; }
+
+html .torrent-search--list__poster-img {
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px var(--edge);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+html .data-table > tbody > tr:hover .torrent-search--list__poster-img {
+  transform: scale(1.04);
+  box-shadow: 0 0 0 1px var(--cy-a), 0 6px 16px rgba(0, 0, 0, .6), 0 0 12px rgba(57, 231, 242, .2);
+}
+
+html .torrent-icons__featured { color: var(--cy); }
+html .footer a:hover { color: var(--cy); }
+html .post { transition: box-shadow .2s ease; }
+html .post:focus-within { box-shadow: 0 0 0 1px var(--cy-a), 0 0 14px rgba(57, 231, 242, .12); }
