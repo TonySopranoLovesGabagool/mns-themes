@@ -2211,7 +2211,28 @@ html #background-effects { display: none !important; }
 /* MNS paints a navy veil over the content area and header bar */
 html main,
 html main:has(> article > section.meta) { background: transparent !important; }
-html .top-nav__left { background-color: transparent !important; }
+
+/* glass header as rounded bars (MNS layout), not one full-width slab
+   that ends in hard edges at 1440px */
+html body nav.top-nav {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+html body .top-nav__left {
+  background: var(--g-regular) !important;
+  backdrop-filter: blur(30px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+  border: 1px solid var(--g-hairline) !important;
+  border-radius: var(--g-radius) !important;
+  box-shadow: var(--g-highlight) !important;
+}
+html body .secondary-nav {
+  border: 1px solid var(--g-hairline-soft) !important;
+  border-radius: var(--g-radius) !important;
+}
 html .top-nav__main-menus > li { background: rgba(255, 255, 255, .06) !important; }
 
 /* torrent page backdrop clashes with the wallpaper */
