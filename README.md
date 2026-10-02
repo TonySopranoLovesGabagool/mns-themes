@@ -24,6 +24,12 @@ Liquid glass over the moon's surface, cyan accents.
 https://tonysopranolovesgabagool.github.io/mns-themes/moonlanding.css
 ```
 
+### Liquid Glass
+Apple-style frosted glass over an aurora wallpaper, blue accents. Original by AzureBelmont, ported to MNS with permission.
+```
+https://tonysopranolovesgabagool.github.io/mns-themes/liquidglass.css
+```
+
 ### Blackout
 Pure OLED black, clean and minimal. Pick your accent color.
 
