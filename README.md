@@ -24,6 +24,12 @@ Liquid glass over the moon's surface, cyan accents.
 https://tonysopranolovesgabagool.github.io/mns-themes/moonlanding.css
 ```
 
+### Harvest Moon
+Navy glass under a huge copper harvest moon, copper accents.
+```
+https://tonysopranolovesgabagool.github.io/mns-themes/harvestmoon.css
+```
+
 ### Liquid Glass
 Apple-style frosted glass over an aurora wallpaper, blue accents. Original by AzureBelmont, ported to MNS with permission.
 ```
