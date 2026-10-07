@@ -210,6 +210,19 @@ html .text-muted  { color: var(--dim); }
 html .badge-user  { background-color: var(--hdr); }
 html .footer__icon { color: var(--dim); }
 
+/* keep the header (and its search results / menus) above the page */
+html body > header { position: relative; z-index: 20; }
+html .top-nav { z-index: 30; }
+html .secondary-nav { z-index: 1; }
+html .quick-search__results {
+  z-index: 40;
+  background-color: var(--hdr);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .6);
+}
+html .top-nav__dropdown > ul { z-index: 40; }
+
 /* header */
 html .top-nav__left {
   background-color: var(--hdr-glass);
