@@ -30,6 +30,12 @@ Navy glass under a huge copper harvest moon, copper accents.
 https://tonysopranolovesgabagool.github.io/mns-themes/harvestmoon.css
 ```
 
+### Midnight Screening
+Dark glass inside an old movie palace, projector beam from the corner, silver accents.
+```
+https://tonysopranolovesgabagool.github.io/mns-themes/midnightscreening.css
+```
+
 ### Liquid Glass
 Apple-style frosted glass over an aurora wallpaper, blue accents. Original by AzureBelmont, ported to MNS with permission.
 ```
